@@ -13,8 +13,8 @@ html.wf-active {
 
 /* Typography
 ------------------------------------------------------------------------------------------------------------------------------------------------ */
-body { font-family: 'PT Sans', Vedana, sans-serif; font-weight: normal;  }
-h1, h2, h3 { font-family: 'PT Sans', Georgia, serif; }
+body { font-family: 'PT Sans', Vedana, sans-serif; font-weight: normal; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: 'PT Sans', Georgia, serif; font-weight: normal;  }
 
 /* General stuff
 ------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -43,7 +43,7 @@ article {
 
 	header {
 
-		h1 { color: #333; line-height: 0.9em; padding-bottom: 0.2em;  }
+		h1 { color: #333; line-height: 0.9em; padding-bottom: 0.2em; }
 		span { display: block; float: left; margin: 0 1em 0.6em 0; }
 		img { width: 6em; }
 		p { padding-bottom: 0.3em; }
@@ -58,21 +58,20 @@ article {
 
 		h2 {
 			clear: both;
-			padding: 0.4em 0 0.4em 0.5em;
 			margin: 0 0 0.5em 0; 
-			background: #F8F8F8;
-			border: 1px solid #EEE; 
+			padding: 1em 1em 2em 1em; 
+			margin: -1em; 
 			position: relative; 
 			color: #333; 
-			font-weight: bold; 
 			font-size: 1.4em; 
 			line-height: 0.8em; 
 
+			@include background-image(linear-gradient(#EEE, #FFF));
 			@include text-shadow(rgba(white, 0.6) 1px 1px 0);
 			@include border-radius(4px);
 
 			.icon {
-				display: block; 
+				display: none; 
 				width: 40px; height: 40px; 
 				font-size: 1.9em; line-height: 0px;
 				text-align: center; 
@@ -105,9 +104,8 @@ article {
 					display: block; 
 					padding: 0.6em 1em; 
 					color: #333; line-height: 1.1em; 
-					border: 1px solid #FFF; 
 
-					@include border-radius(4px);
+					@include border-radius(6px);
 					@include box-sizing(border-box);
 
 					@include single-transition(all, 0.1s, ease-in);
@@ -117,8 +115,8 @@ article {
 
 						@include single-transition(all, 0.1s, ease-in);
 
-						&.label { padding-right: 40px; } 
-						&.value { font-size: 0.8em; color: #CCC; }
+						&.label { padding-left: 40px; } 
+						&.value { padding-left: 40px; font-size: 0.8em; color: #CCC; }
 					}
 
 					span.icon {
@@ -126,7 +124,7 @@ article {
 						font-size: 1.9em; line-height: 15px;
 						text-align: center; 
 						opacity: 0.1;
-						position: absolute; top: 5px; right: 5px;
+						position: absolute; top: 5px; left: 5px;
 						font-family: 'Pictos', serif;
 
 						@include single-transition(all, 0.2s, ease-in);
@@ -136,14 +134,16 @@ article {
 						background: #F4F4F4; 
 						border-color: #EEE;
 
+						@include background-image(linear-gradient(#EEE, #FFF));
+						@include box-shadow(#DDD 0 0 0px 1px inset, #FFF 0 0 0px 2px inset);
+
 						span.icon {
-							@include translateX(-520%);
 							opacity: 1;
 							color: #369;
 						}
 
-						.label { color: #369; padding-left: 40px; padding-right: 0;  }
-						.value { color: #999; padding-left: 40px; }
+						.label { color: #369; }
+						.value { color: #999; }
 					}
 				}
 			}

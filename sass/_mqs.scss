@@ -1,0 +1,44 @@
+@media only screen
+and (max-width : 768px) {
+
+	article {
+		width: auto;
+		margin-top: 0;
+	   	margin-bottom: 0; 
+	}
+
+}
+
+@media only screen
+and (max-width : 480px) {
+
+	article {
+		border-top: 2px solid #000; 
+
+		section ul li {
+			width: auto;
+			float: none;	
+
+			a {
+			}
+		}
+	}
+}
+
+@media only print {
+	
+	body {
+		background: none;
+	}
+
+	article {
+
+		section, header {
+			@include border-radius(0);
+			@include box-shadow(none);
+			border: none;
+		}
+
+	}
+
+}

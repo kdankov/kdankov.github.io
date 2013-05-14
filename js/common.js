@@ -35,22 +35,15 @@ $(function(){
 });
 
 WebFontConfig = {
-	google: { families: [ 'PT+Sans' ] },
+	google: { families: [ 'PT+Sans:400,400italic' ] },
 	custom: { families: [ 'PictosWeb' ], urls: [ '/fonts/fonts.css' ] },
-	loading: function() {
-		// Called when all the specified web-font provider modules (google, typekit, and/or custom) have reported that they have started loading fonts.
+	loading: function() { // Called when all the specified web-font provider modules (google, typekit, and/or custom) have reported that they have started loading fonts.
 
 	},
-	active: function() {
-		// Called when all of the web fonts have either finished loading or failed to load, as long as at least one loaded successfully.
+	active: function() { // Called when all of the web fonts have either finished loading or failed to load, as long as at least one loaded successfully.
 
-		$('#spinner').animate({ opacity: 0 }, 200, function(){
-			spinner.stop();
-			$('#card').addClass('animated');
-		});
 	},
-	inactive: function() {
-		// Called if the browser does not support web fonts or if none of the fonts could be loaded.
+	inactive: function() { // Called if the browser does not support web fonts or if none of the fonts could be loaded.
 		
 	}
 };

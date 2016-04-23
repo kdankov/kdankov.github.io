@@ -48,6 +48,8 @@ gulp.task('serve', function() {
 		}
 	});
 
+	gulp.watch(path.SCSS_SRC, ['sass']);
+	gulp.watch("./css/*.css", ['inlinesource']);
 	gulp.watch("./src/*.html", ['inlinesource']);
 	gulp.watch("./*.html").on('change', browserSync.reload);
 

@@ -10,11 +10,12 @@ var path = {
 
 gulp.task('sass', function () {
 
-	gulp.src( path.SCSS_SRC )
+	return gulp.src( path.SCSS_SRC )
+
 	.pipe($.plumber({errorHandler: $.notify.onError("Error: <%= error.message %>")}))
 	.pipe($.sourcemaps.init())
 	.pipe($.sass())
-	.pipe($.autoprefixer({ browsers: ['last 2 versions'], cascade: false }))
+	.pipe($.autoprefixer())
 	.pipe($.size({ showFiles: true }))
 	.pipe($.csso())
 	.pipe($.size({ showFiles: true }))
@@ -25,17 +26,21 @@ gulp.task('sass', function () {
 
 });
 
-gulp.task('inlinesource', ['sass'], function () {
+gulp.task('inlinesource', function () {
+
+	gulp.series("sass");
 
 	var options = {
 		compress: false
 	};
 
 	return gulp.src('./src/*.html')
+
 	.pipe($.size({ showFiles: true }))
 	.pipe($.inlineSource(options))
     .pipe($.htmlmin({collapseWhitespace: true}))
 	.pipe(gulp.dest('./'))
+
 	;
 
 });
@@ -48,16 +53,15 @@ gulp.task('serve', function() {
 		}
 	});
 
-	gulp.watch(path.SCSS_SRC, ['sass']);
-	gulp.watch("./css/*.css", ['inlinesource']);
-	gulp.watch("./src/*.html", ['inlinesource']);
+	gulp.watch(path.SCSS_SRC, gulp.series("sass"));
+
+	gulp.watch("./css/*.css", gulp.series("inlinesource"));
+	gulp.watch("./src/*.html", gulp.series("inlinesource"));
+
 	gulp.watch("./*.html").on('change', browserSync.reload);
 
 });
 
-gulp.task('default', ['sass', 'inlinesource', 'serve'], function() {
-	
-	return gulp.src('./*.html')
-	.pipe($.size({ showFiles: true }))
-
-});
+gulp.task("default", 
+	gulp.series( "sass", "inlinesource", "serve" )
+);
